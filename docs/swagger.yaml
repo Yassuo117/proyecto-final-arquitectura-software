@@ -54,6 +54,86 @@ definitions:
     - title
     - total_copies
     type: object
+  models.Laptop:
+    properties:
+      brand:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: integer
+      model:
+        type: string
+      serial_number:
+        type: string
+      status:
+        type: string
+    type: object
+  models.LaptopLoan:
+    properties:
+      due_at:
+        type: string
+      id:
+        type: integer
+      laptop_id:
+        type: integer
+      loaned_at:
+        type: string
+      returned_at:
+        type: string
+      status:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  models.LaptopLoanDetail:
+    properties:
+      due_at:
+        type: string
+      id:
+        type: integer
+      laptop_brand:
+        type: string
+      laptop_id:
+        type: integer
+      laptop_model:
+        type: string
+      laptop_serial_number:
+        type: string
+      loaned_at:
+        type: string
+      returned_at:
+        type: string
+      status:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  models.LaptopLoanRequest:
+    properties:
+      laptop_id:
+        example: 1
+        minimum: 1
+        type: integer
+    required:
+    - laptop_id
+    type: object
+  models.LaptopRequest:
+    properties:
+      brand:
+        example: Lenovo
+        type: string
+      model:
+        example: ThinkPad E14
+        type: string
+      serial_number:
+        example: UTB-LAP-001
+        type: string
+    required:
+    - brand
+    - model
+    - serial_number
+    type: object
   models.Loan:
     properties:
       book_id:
@@ -355,6 +435,105 @@ paths:
       summary: Actualizar un libro (solo admin)
       tags:
       - books
+  /laptop-loans:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID del portátil
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.LaptopLoanRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.LaptopLoan'
+      security:
+      - BearerAuth: []
+      summary: Solicitar un portátil
+      tags:
+      - laptop-loans
+  /laptop-loans/{id}/return:
+    put:
+      parameters:
+      - description: ID del préstamo
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Devolver un portátil
+      tags:
+      - laptop-loans
+  /laptop-loans/me:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.LaptopLoanDetail'
+            type: array
+      security:
+      - BearerAuth: []
+      summary: Mis préstamos de portátiles
+      tags:
+      - laptop-loans
+  /laptops:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Laptop'
+            type: array
+      security:
+      - BearerAuth: []
+      summary: Listar portátiles
+      tags:
+      - laptops
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Datos del portátil
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.LaptopRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Laptop'
+      security:
+      - BearerAuth: []
+      summary: Registrar un portátil (solo admin)
+      tags:
+      - laptops
   /loans:
     get:
       produces:

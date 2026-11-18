@@ -334,6 +334,170 @@
                 }
             }
         },
+        "/laptop-loans": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "laptop-loans"
+                ],
+                "summary": "Solicitar un portátil",
+                "parameters": [
+                    {
+                        "description": "ID del portátil",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.LaptopLoanRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/models.LaptopLoan"
+                        }
+                    }
+                }
+            }
+        },
+        "/laptop-loans/me": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "laptop-loans"
+                ],
+                "summary": "Mis préstamos de portátiles",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.LaptopLoanDetail"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/laptop-loans/{id}/return": {
+            "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "laptop-loans"
+                ],
+                "summary": "Devolver un portátil",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID del préstamo",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/laptops": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "laptops"
+                ],
+                "summary": "Listar portátiles",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Laptop"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "laptops"
+                ],
+                "summary": "Registrar un portátil (solo admin)",
+                "parameters": [
+                    {
+                        "description": "Datos del portátil",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.LaptopRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/models.Laptop"
+                        }
+                    }
+                }
+            }
+        },
         "/loans": {
             "get": {
                 "security": [
@@ -556,6 +720,125 @@
                     "type": "integer",
                     "minimum": 1,
                     "example": 3
+                }
+            }
+        },
+        "models.Laptop": {
+            "type": "object",
+            "properties": {
+                "brand": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "model": {
+                    "type": "string"
+                },
+                "serial_number": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.LaptopLoan": {
+            "type": "object",
+            "properties": {
+                "due_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "laptop_id": {
+                    "type": "integer"
+                },
+                "loaned_at": {
+                    "type": "string"
+                },
+                "returned_at": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.LaptopLoanDetail": {
+            "type": "object",
+            "properties": {
+                "due_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "laptop_brand": {
+                    "type": "string"
+                },
+                "laptop_id": {
+                    "type": "integer"
+                },
+                "laptop_model": {
+                    "type": "string"
+                },
+                "laptop_serial_number": {
+                    "type": "string"
+                },
+                "loaned_at": {
+                    "type": "string"
+                },
+                "returned_at": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.LaptopLoanRequest": {
+            "type": "object",
+            "required": [
+                "laptop_id"
+            ],
+            "properties": {
+                "laptop_id": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "example": 1
+                }
+            }
+        },
+        "models.LaptopRequest": {
+            "type": "object",
+            "required": [
+                "brand",
+                "model",
+                "serial_number"
+            ],
+            "properties": {
+                "brand": {
+                    "type": "string",
+                    "example": "Lenovo"
+                },
+                "model": {
+                    "type": "string",
+                    "example": "ThinkPad E14"
+                },
+                "serial_number": {
+                    "type": "string",
+                    "example": "UTB-LAP-001"
                 }
             }
         },
