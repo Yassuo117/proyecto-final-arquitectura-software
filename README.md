@@ -8,6 +8,7 @@ Permite: registro/login con JWT, catálogo de libros (CRUD para administradores)
 
 La ampliación del proyecto se documenta en la carpeta [`proyecto-final`](proyecto-final):
 
+- [`README.md`](proyecto-final/README.md): índice y orden recomendado de lectura.
 - [`analisis.md`](proyecto-final/analisis.md): acoplamientos y alternativas estudiadas.
 - [`adr.md`](proyecto-final/adr.md): decisión arquitectónica y consecuencias.
 - [`diagramas.md`](proyecto-final/diagramas.md): C4, componentes y secuencia.
