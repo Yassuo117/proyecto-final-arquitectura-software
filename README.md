@@ -14,6 +14,7 @@ La ampliación del proyecto se documenta en la carpeta [`proyecto-final`](proyec
 - [`diagramas.md`](proyecto-final/diagramas.md): C4, componentes y secuencia.
 - [`verificacion.md`](proyecto-final/verificacion.md): pruebas y evidencias.
 - [`guion-defensa.md`](proyecto-final/guion-defensa.md): apoyo para explicar la decisión y responder preguntas.
+- [`explicacion-para-presentar.md`](proyecto-final/explicacion-para-presentar.md): presentación completa con demostración y preguntas posibles.
 
 El archivo [`pruebas-proyecto-final.http`](pruebas-proyecto-final.http) permite repetir los principales casos desde REST Client.
 

@@ -18,6 +18,7 @@ Material de apoyo:
 - [`evidencias/resultado-http.txt`](evidencias/resultado-http.txt): salida de los 22 casos ejecutados.
 - [`evidencias/resultado-migraciones.txt`](evidencias/resultado-migraciones.txt): comprobación desde una base vacía.
 - [`guion-defensa.md`](guion-defensa.md): resumen para preparar la sustentación individual.
+- [`explicacion-para-presentar.md`](explicacion-para-presentar.md): explicación oral completa, demostración y preguntas posibles.
 - [`checklist-entrega.md`](checklist-entrega.md): última revisión antes de compartir el enlace.
 
 ## Ubicación de la implementación
