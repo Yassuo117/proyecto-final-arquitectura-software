@@ -27,6 +27,7 @@ go.work.sum
 
 # env file
 .env
+backups/
 
 # Editor/IDE
 # .idea/
