@@ -1,0 +1,24 @@
+Fecha: 18 de noviembre de 2026
+Entorno: contenedor temporal mysql:8.0 con volumen vacío
+
+El log de inicialización ejecutó, en orden:
+1. /docker-entrypoint-initdb.d/001_init.sql
+2. /docker-entrypoint-initdb.d/002_laptops.sql
+
+SHOW TABLES:
+- books
+- laptop_loans
+- laptops
+- loans
+- users
+
+SELECT COUNT(*) AS seeded_books FROM books:
+- 6
+
+Comprobaciones adicionales:
+- laptops.serial_number: UNIQUE y NOT NULL
+- laptops.status: available, loaned o maintenance
+- laptop_loans: llaves foráneas a users y laptops
+- laptop_loans.status: active o returned
+
+El contenedor y el volumen temporal fueron retirados al terminar.

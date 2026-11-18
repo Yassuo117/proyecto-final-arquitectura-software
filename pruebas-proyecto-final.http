@@ -1,0 +1,78 @@
+@baseUrl = http://localhost:8080
+
+### 1. Salud
+GET {{baseUrl}}/health
+
+### 2. Ping
+GET {{baseUrl}}/ping
+
+### 3. Registrar estudiante
+# @name registerStudent
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Estudiante Arquitectura",
+  "email": "estudiante.arquitectura@example.com",
+  "password": "pass@123"
+}
+
+### 4. Login estudiante
+# @name loginStudent
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "estudiante.arquitectura@example.com",
+  "password": "pass@123"
+}
+
+### 5. Listar libros (regresión)
+GET {{baseUrl}}/api/books
+Authorization: Bearer {{loginStudent.response.body.token}}
+
+### 6. Listar portátiles
+GET {{baseUrl}}/api/laptops
+Authorization: Bearer {{loginStudent.response.body.token}}
+
+### 7. Crear portátil (requiere convertir este usuario en admin en MySQL)
+POST {{baseUrl}}/api/laptops
+Authorization: Bearer {{loginStudent.response.body.token}}
+Content-Type: application/json
+
+{
+  "brand": "Lenovo",
+  "model": "ThinkPad E14",
+  "serial_number": "UTB-LAP-001"
+}
+
+### 8. Solicitar portátil
+# @name borrowLaptop
+POST {{baseUrl}}/api/laptop-loans
+Authorization: Bearer {{loginStudent.response.body.token}}
+Content-Type: application/json
+
+{
+  "laptop_id": 1
+}
+
+### 9. Mis préstamos de portátiles
+GET {{baseUrl}}/api/laptop-loans/me
+Authorization: Bearer {{loginStudent.response.body.token}}
+
+### 10. Intentar préstamo duplicado (debe responder 409)
+POST {{baseUrl}}/api/laptop-loans
+Authorization: Bearer {{loginStudent.response.body.token}}
+Content-Type: application/json
+
+{
+  "laptop_id": 1
+}
+
+### 11. Devolver portátil
+PUT {{baseUrl}}/api/laptop-loans/{{borrowLaptop.response.body.id}}/return
+Authorization: Bearer {{loginStudent.response.body.token}}
+
+### 12. Devolución repetida (debe responder 409)
+PUT {{baseUrl}}/api/laptop-loans/{{borrowLaptop.response.body.id}}/return
+Authorization: Bearer {{loginStudent.response.body.token}}

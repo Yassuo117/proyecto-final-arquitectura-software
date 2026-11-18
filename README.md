@@ -2,7 +2,18 @@
 
 API REST en Go para un sistema de biblioteca, **proyecto del curso de Arquitectura de Software**. El repositorio implementa una **arquitectura por capas** (`handler` → `service` → `repository`) sobre MySQL, con autenticación JWT, documentación Swagger y está **dockerizado** (MySQL + API) para ejecutarse en cualquier máquina con un solo comando.
 
-Permite: registro/login con JWT, catálogo de libros (CRUD para administradores), y préstamos de libros para estudiantes.
+Permite: registro/login con JWT, catálogo de libros (CRUD para administradores), préstamos de libros y préstamo individual de portátiles identificados por serial.
+
+## Proyecto final: préstamo de portátiles
+
+La ampliación del proyecto se documenta en la carpeta [`proyecto-final`](proyecto-final):
+
+- [`analisis.md`](proyecto-final/analisis.md): acoplamientos y alternativas estudiadas.
+- [`adr.md`](proyecto-final/adr.md): decisión arquitectónica y consecuencias.
+- [`diagramas.md`](proyecto-final/diagramas.md): C4, componentes y secuencia.
+- [`verificacion.md`](proyecto-final/verificacion.md): pruebas y evidencias.
+
+El archivo [`pruebas-proyecto-final.http`](pruebas-proyecto-final.http) permite repetir los principales casos desde REST Client.
 
 ---
 

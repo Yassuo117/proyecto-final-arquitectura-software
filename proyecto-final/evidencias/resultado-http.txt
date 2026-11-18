@@ -1,0 +1,28 @@
+Fecha: 18 de noviembre de 2026
+Comando: pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/verificar-proyecto.ps1
+
+Caso                               Esperado Obtenido Resultado
+Health                                  200      200 OK
+Ping                                    200      200 OK
+Registrar estudiante                    201      201 OK
+Registrar segundo estudiante            201      201 OK
+Registrar usuario para admin            201      201 OK
+Login de administrador                  200      200 OK
+Perfil autenticado                      200      200 OK
+Listar libros existentes                200      200 OK
+Préstamo de libro existente             201      201 OK
+Devolución de libro existente           200      200 OK
+Catálogo sin token                      401      401 OK
+Estudiante no puede crear portátil      403      403 OK
+Admin crea portátil                     201      201 OK
+Serial duplicado                        409      409 OK
+Usuario lista portátiles                200      200 OK
+Solicitar portátil disponible           201      201 OK
+Impedir préstamo de equipo ocupado      409      409 OK
+Listar mis préstamos de portátil        200      200 OK
+Impedir devolución ajena                403      403 OK
+Devolución inexistente                  404      404 OK
+Devolver portátil propio                200      200 OK
+Impedir devolución repetida             409      409 OK
+
+VERIFICACIÓN COMPLETA: 22 casos aprobados.
