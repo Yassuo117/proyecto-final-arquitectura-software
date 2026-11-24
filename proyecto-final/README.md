@@ -19,6 +19,7 @@ Material de apoyo:
 - [`evidencias/resultado-migraciones.txt`](evidencias/resultado-migraciones.txt): comprobación desde una base vacía.
 - [`guion-defensa.md`](guion-defensa.md): resumen para preparar la sustentación individual.
 - [`explicacion-para-presentar.md`](explicacion-para-presentar.md): explicación oral completa, demostración y preguntas posibles.
+- [`GUIA-PRESENTACION-10-MIN.md`](GUIA-PRESENTACION-10-MIN.md): orden exacto de la exposición, qué mostrar y qué decir.
 - [`checklist-entrega.md`](checklist-entrega.md): última revisión antes de compartir el enlace.
 
 ## Ubicación de la implementación
